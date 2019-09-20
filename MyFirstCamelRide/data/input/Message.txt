@@ -1,0 +1,1 @@
+This file is going to move from input to output dir

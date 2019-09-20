@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:osgi="http://camel.apache.org/schema/osgi"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+http://activemq.apache.org/schema/core http://camel.apache.org/schema/osgi http://camel.apache.org/schema/osgi/camel-osgi.xsd">
+
+
+
+<!--    /**-->
+<!--    * This is very simple test using XML DSL in Camel to move a file from local dri to another dir-->
+<!--    * In this example we have simple route local to local-->
+<!--    * we also have a simple processor-->
+<!--    */-->
+<bean id="process" class="mycameltest.process"/>
+
+<camelContext xmlns="http://camel.apache.org/schema/spring">
+    <route>
+        <from uri="file:data/inbox?noop=true"/>
+        <process ref="process"/>
+        <to uri="file:data/output"/>
+    </route>
+</camelContext>
+
+</beans>

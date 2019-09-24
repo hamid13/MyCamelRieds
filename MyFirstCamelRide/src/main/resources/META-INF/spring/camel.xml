@@ -13,12 +13,15 @@ http://activemq.apache.org/schema/core http://camel.apache.org/schema/osgi http:
 <!--    * we also have a simple processor-->
 <!--    */-->
 <bean id="process" class="mycameltest.process"/>
+    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" value="calsspath:properties.properties"/>
+    </bean>
 
 <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route>
-        <from uri="file:data/inbox?noop=true"/>
+        <from uri="file:{{source}}?noop=true"/>
         <process ref="process"/>
-        <to uri="file:data/output"/>
+        <to uri="file:{{destination}}"/>
     </route>
 </camelContext>
 
